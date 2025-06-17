@@ -71,7 +71,8 @@ public class JwtInterceptor implements HandlerInterceptor {
     }
 
     private void sendError(HttpServletResponse response, Result result) throws IOException {
-        response.setStatus(result.getCode()); // 设置HTTP状态码
+//        response.setStatus(result.getCode()); // 设置HTTP状态码
+        response.setStatus(200);  // 统一处理HTTP响应
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         // 将 Result 对象序列化为JSON
