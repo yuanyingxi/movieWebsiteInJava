@@ -2,11 +2,10 @@ package com.movie.controller;
 
 import com.movie.common.Result;
 import com.movie.entity.CreatorMovie;
-import com.movie.entity.Movie;
-import com.movie.entity.MovieVO;
+
 import com.movie.mapper.CreatorMovieMapper;
 
-import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
