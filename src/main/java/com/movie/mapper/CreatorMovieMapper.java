@@ -1,6 +1,7 @@
 package com.movie.mapper;
 
 import com.movie.entity.CreatorMovie;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -27,5 +28,21 @@ public interface CreatorMovieMapper {
 
 
 })
-     List<CreatorMovie> findMoviesByCreatorId(Integer creatorId);
+     List<CreatorMovie> findMoviesByCreatorId(long creatorId);
+    /**
+    * 查询主创最常担任的角色类型（单个字符串）
+            * @param creatorId 主创ID
+     * @return 最高频角色名称（如 "导演"），无结果时返回 null
+            */
+    @Select("""
+        SELECT r.name
+        FROM movie_creator mc
+        JOIN role r ON mc.role_id = r.id
+        WHERE mc.creator_id = #{creatorId}
+        LIMIT 1  -- 确保只返回一个结果
+    """)
+    @Results(id = "roleResultMap", value = {
+            @Result(property = "roleName", column = "name", javaType = String.class)  // 精确映射[1,2](@ref)
+    })
+    String findSingleRoleByCreatorId(@Param("creatorId") long creatorId);
 }
