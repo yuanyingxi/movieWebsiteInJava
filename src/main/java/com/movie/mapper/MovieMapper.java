@@ -53,4 +53,19 @@ public interface MovieMapper extends BaseMapper<Movie> {
             @Result(property = "averageRating", column = "average_rating")
     })
     List<MovieBasicVO> selectMovieList(@Param("isVip") int isVip);
+
+    @Select("SELECT movie_no AS id, title, play_count AS playCount, average_rating as rating, release_date as date FROM movie ORDER BY play_count DESC LIMIT 19,20")
+    List<MovieRankingVO> selectPlayWeek();
+
+    @Select("SELECT movie_no AS id, title, play_count AS playCount, average_rating as rating, release_date as date FROM movie ORDER BY play_count DESC LIMIT 29,20")
+    List<MovieRankingVO> selectPlayMonth();
+
+    @Select("SELECT movie_no AS id, title, play_count AS playCount, average_rating as rating, release_date as date FROM movie ORDER BY play_count DESC LIMIT 50")
+    List<MovieRankingVO> selectPlayAll();
+
+    @Select("SELECT movie_no AS id, title, play_count AS playCount, average_rating as rating, release_date as date FROM movie ORDER BY average_rating DESC LIMIT 20")
+    List<MovieRankingVO> selectByRate();
+
+    @Select("SELECT movie_no AS id, title, play_count AS playCount, average_rating as rating, release_date as date FROM movie ORDER BY rating_count DESC LIMIT 20")
+    List<MovieRankingVO> selectByHot();
 }

@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     @Transactional
-    public void createOrder(Long userId, String productName, BigDecimal amount) {
+    public Order createOrder(Long userId, String productName, BigDecimal amount) {
         Order order = new Order();
         order.setOrderId(generateOrderId(userId)); // 商户订单号, 主键
         order.setProductName(productName);   // 商品名
@@ -40,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
         String alipayTradeNo = this.generateOrderId(userId);
         order.setAlipayTradeNo(alipayTradeNo);
         orderMapper.insert(order);
+        return order;
     }
 
     /**

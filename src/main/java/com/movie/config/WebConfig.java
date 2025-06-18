@@ -27,7 +27,10 @@ public class WebConfig implements WebMvcConfigurer {
                         "/api/user/test",
                         "/api/report/ranking",
                         "/api/home",
-                        "/api/movieCover"
+                        "/api/movieCover",
+                        "/api/movieCover/creator",
+                        "/api/chart/movie_stats",
+                        "/api/rank/list"
                 ); // 排除登录和刷新接口
 
         registry.addInterceptor(accessLimitInterceptor)

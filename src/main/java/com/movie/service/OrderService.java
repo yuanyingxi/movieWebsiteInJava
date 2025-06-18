@@ -13,7 +13,7 @@ public interface OrderService {
      * 创建新订单
      */
     @Transactional
-    void createOrder(Long userId, String productName, BigDecimal amount);
+    Order createOrder(Long userId, String productName, BigDecimal amount);
 
     /**
      * 获取订单

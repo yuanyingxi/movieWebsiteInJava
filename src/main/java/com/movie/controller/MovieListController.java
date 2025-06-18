@@ -33,7 +33,6 @@ public class MovieListController {
         for(int i=0;i<l.size();i++){
             MovieVO m = movieByTypeMapper.selectMovieById(l.get(i));
 
-
             data.add(m);
         }
 
@@ -49,6 +48,7 @@ public class MovieListController {
         );
         return Result.success(pageResult);
     }
+
     @GetMapping("/region")
     public Result MovieRegion(
             @RequestParam(defaultValue = "1") int page,
