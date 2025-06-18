@@ -1,6 +1,8 @@
 package com.movie.controller;
 
 import com.movie.common.Result;
+import com.movie.mapper.MovieMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -14,10 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/movieCover")
 public class PicController {
+    @Autowired
+    private MovieMapper movieMapper;
+
     @GetMapping
     public ResponseEntity<Resource> movieCover(@RequestParam String movieNo) {
         String imagePath = "static/MovieCover/" + movieNo + ".jpg";
@@ -31,6 +37,7 @@ public class PicController {
                 .contentType(MediaType.IMAGE_JPEG) // 自动识别类型
                 .body(imgResource);
     }
+
     @GetMapping("/creator")
     public ResponseEntity<Resource> creator(
             @RequestParam String movieNo,
@@ -45,5 +52,13 @@ public class PicController {
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG) // 自动识别类型
                 .body(imgResource);
+    }
+
+    @GetMapping("/creatorsName")
+    public Result creatorsName(
+            @RequestParam String movieNo
+    ){
+        List<String> creators = movieMapper.selectCreatorsByMovieNo(movieNo);
+        return Result.success(creators);
     }
 }

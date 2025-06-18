@@ -68,4 +68,18 @@ public interface MovieMapper extends BaseMapper<Movie> {
 
     @Select("SELECT movie_no AS id, title, play_count AS playCount, average_rating as rating, release_date as date FROM movie ORDER BY rating_count DESC LIMIT 20")
     List<MovieRankingVO> selectByHot();
+
+
+    /**
+     * 根据电影编号获取主创人员列表（导演排第一位）
+     * @param movieNo 电影编号
+     * @return 主创人员姓名列表
+     */
+    @Select("SELECT c.name " +
+            "FROM creator c " +
+            "JOIN movie_creator mc ON c.id = mc.creator_id " +
+            "JOIN movie m ON mc.movie_id = m.id " +
+            "WHERE m.movie_no = #{movieNo} " +
+            "ORDER BY CASE WHEN mc.role_id = 1 THEN 0 ELSE 1 END, c.name")
+    List<String> selectCreatorsByMovieNo(@Param("movieNo") String movieNo);
 }

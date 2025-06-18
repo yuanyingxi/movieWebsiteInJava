@@ -29,6 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
                         "/api/home",
                         "/api/movieCover",
                         "/api/movieCover/creator",
+                        "/api/movieCover/creatorsName",
                         "/api/chart/movie_stats",
                         "/api/rank/list"
                 ); // 排除登录和刷新接口

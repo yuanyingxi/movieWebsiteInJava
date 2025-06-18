@@ -63,6 +63,7 @@ public class AuthController {
         return logoutService.logout(request);  // 注销登录
     }
 
+    @AccessLimit(seconds = 5, maxCount = 3, needLogin=false)
     @GetMapping("/test")
     public Result test() {
         return Result.success(417);
