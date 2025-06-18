@@ -32,7 +32,7 @@ public interface CreatorMovieMapper {
     /**
     * 查询主创担任的角色类型（单个字符串）
             * @param creatorId 主创ID
-     * @return 最高频角色名称（如 "导演"），无结果时返回 null
+     * @return 角色名称（如 "导演"），无结果时返回 null
             */
     @Select("""
         SELECT r.name
