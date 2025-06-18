@@ -1,6 +1,7 @@
 package com.movie.controller;
 
 import com.movie.common.Result;
+import com.movie.common.annotation.AccessLimit;
 import com.movie.entity.MovieVO;
 import com.movie.entity.PageResult;
 import com.movie.mapper.MovieByRegionMapper;
@@ -20,6 +21,8 @@ public class MovieListController {
     private MovieByTypeMapper movieByTypeMapper;
     @Autowired
     private MovieByRegionMapper movieByRegionMapper;
+
+    @AccessLimit(seconds = 5, maxCount = 3, needLogin = false)
     @GetMapping("/type")
     public Result MovieType(
             @RequestParam(defaultValue = "1") int page,
