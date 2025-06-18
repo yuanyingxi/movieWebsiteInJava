@@ -10,7 +10,7 @@ public interface CreatorMovieMapper {
     @Select("SELECT " +
             "m.movie_no, m.title, m.url, m.cover_url, " +
             "m.is_vip, m.average_rating, " +
-            "m.description, m.region " +  // 只选择MovieVO包含的字段
+            "m.description, m.region " +
             "FROM movie m " +
             "INNER JOIN movie_creator mc ON m.id = mc.movie_id " +
             "WHERE mc.creator_id = #{creatorId} " +
@@ -45,16 +45,16 @@ public interface CreatorMovieMapper {
 
 
     /**
-    * 查询主创最常担任的角色类型（单个字符串）
+    * 查询主创担任的角色类型（单个字符串）
             * @param creatorId 主创ID
-     * @return 最高频角色名称（如 "导演"），无结果时返回 null
+     * @return 角色名称（如 "导演"），无结果时返回 null
             */
     @Select("""
         SELECT r.name
         FROM movie_creator mc
         JOIN role r ON mc.role_id = r.id
         WHERE mc.creator_id = #{creatorId}
-        LIMIT 1  -- 确保只返回一个结果
+        LIMIT 1
     """)
     @Results(id = "roleResultMap", value = {
             @Result(property = "roleName", column = "name", javaType = String.class)  // 精确映射[1,2](@ref)
