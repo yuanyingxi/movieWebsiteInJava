@@ -1,6 +1,7 @@
 package com.movie.controller;
 
 import com.movie.common.Result;
+import com.movie.entity.Creator;
 import com.movie.mapper.MovieMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -58,7 +59,7 @@ public class PicController {
     public Result creatorsName(
             @RequestParam String movieNo
     ){
-        List<String> creators = movieMapper.selectCreatorsByMovieNo(movieNo);
+        List<Creator> creators = movieMapper.selectCreatorsByMovieNo(movieNo);
         return Result.success(creators);
     }
 }
