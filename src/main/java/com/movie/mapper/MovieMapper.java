@@ -75,11 +75,15 @@ public interface MovieMapper extends BaseMapper<Movie> {
      * @param movieNo 电影编号
      * @return 主创人员姓名列表
      */
-    @Select("SELECT c.name " +
+    @Select("SELECT c.name as name, c.id as id " +
             "FROM creator c " +
             "JOIN movie_creator mc ON c.id = mc.creator_id " +
             "JOIN movie m ON mc.movie_id = m.id " +
             "WHERE m.movie_no = #{movieNo} " +
             "ORDER BY CASE WHEN mc.role_id = 1 THEN 0 ELSE 1 END, c.name")
-    List<String> selectCreatorsByMovieNo(@Param("movieNo") String movieNo);
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "name", column = "name")
+    })
+    List<Creator> selectCreatorsByMovieNo(@Param("movieNo") String movieNo);
 }
