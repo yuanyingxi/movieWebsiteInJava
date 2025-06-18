@@ -35,7 +35,7 @@ public interface MovieByTypeMapper extends BaseMapper<MovieVO> {
     @Select("SELECT * FROM movie WHERE id = #{id}")
 
     @Results(id = "movieResultMap", value = {
-            @Result(property = "id",column = "id"),
+            @Result(property = "id",column = "movie_no"),
             @Result(property = "title", column = "title"),
             @Result(property = "url", column = "url"),
             @Result(property = "coverUrl", column = "cover_url"),

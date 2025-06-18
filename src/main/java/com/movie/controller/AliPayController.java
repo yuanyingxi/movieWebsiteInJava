@@ -51,12 +51,9 @@ public class AliPayController {
         BigDecimal countAmount = new BigDecimal(amount);
 
         // 2. 创建订单记录
-        orderService.createOrder(userId,productName,countAmount);
+        Order order = orderService.createOrder(userId,productName,countAmount);
 
-        // 2. 选择订单记录
-        Order order = orderService.selectOrder(userId, countAmount);
-
-        // 3. 调用支付宝接口
+        // 仅使用新订单调用支付
         return Result.success(payUtil.sendRequestToAlipay(
                 order.getOrderId(),
                 order.getAmount().toString(),

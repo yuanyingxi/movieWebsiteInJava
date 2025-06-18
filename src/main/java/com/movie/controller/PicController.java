@@ -31,4 +31,19 @@ public class PicController {
                 .contentType(MediaType.IMAGE_JPEG) // 自动识别类型
                 .body(imgResource);
     }
+    @GetMapping("/creator")
+    public ResponseEntity<Resource> creator(
+            @RequestParam String movieNo,
+            @RequestParam String name) {
+        String imagePath = "static/HumanCover/" + movieNo + name + ".jpg";
+
+        ClassPathResource imgResource = new ClassPathResource(imagePath);
+
+        if (!imgResource.exists()) {
+            return ResponseEntity.notFound().build(); // 404 错误
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG) // 自动识别类型
+                .body(imgResource);
+    }
 }
