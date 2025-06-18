@@ -1,0 +1,17 @@
+:3000 {
+    # 代理 /api/* 到NATAPP隧道
+    handle /api/* {
+        # http://fce48f66.natappfree.cc
+        reverse_proxy http://aa286d75.natappfree.cc {
+            header_up Host aa286d75.natappfree.cc  # 强制指定隧道域名
+            header_up X-Forwarded-Host {host}      # 透传原始Host
+            header_up X-Forwarded-Proto {scheme}  # 透传协议
+        }
+    }
+
+    # 其他请求代理到前端
+    handle {
+        reverse_proxy localhost:5173
+    }
+}
+# rewrite * /m1/6328049-6023422-default{path}
