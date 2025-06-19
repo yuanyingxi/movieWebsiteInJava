@@ -36,7 +36,7 @@ public class PayUtil {
     private final String NOTIFY_URL = "http://aa286d75.natappfree.cc/api/alipay/toSuccess";
 
     //支付宝同步通知路径,付款完毕后跳转本项目的页面，可以不是公网地址
-    private final String RETURN_URL = "http://localhost:3000"; /**  此处修改为支付完成后条转转界面  **/
+    private final String RETURN_URL = "http://localhost:8080"; /**  此处修改为支付完成后条转转界面  **/
     private AlipayClient alipayClient = null;
 
     public String sendRequestToAlipay(String outTradeNo, String totalAmount, String subject) throws AlipayApiException {

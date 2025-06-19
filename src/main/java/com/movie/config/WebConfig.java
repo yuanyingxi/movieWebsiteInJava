@@ -32,7 +32,9 @@ public class WebConfig implements WebMvcConfigurer {
                         "/api/movieCover/creatorsName",
                         "/api/chart/movie_stats",
                         "/api/rank/list",
-                        "/api/creatorMovie"
+                        "/api/creatorMovie",
+                        "/api/video/AveMujica.mp4",
+                        "/api/video/MyGo.mp4"
                 ); // 排除登录和刷新接口
 
         registry.addInterceptor(accessLimitInterceptor)
