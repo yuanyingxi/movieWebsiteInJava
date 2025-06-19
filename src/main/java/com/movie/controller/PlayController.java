@@ -15,6 +15,7 @@ public class PlayController {
 
     @GetMapping("/play/{movieId}")
     public Result play(@PathVariable String movieId, HttpServletRequest request) {
+        System.out.println(movieId);
         return playService.getMovie(movieId, request);
     }
 
